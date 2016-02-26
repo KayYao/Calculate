@@ -1,0 +1,19 @@
+﻿已經開始建置於 2016/2/26 下午 02:55:33。
+     1>節點 2 (build 目標) 上的專案 "D:\wxWidgets\AdCalculate\testclhp\testclhp\testclhp.vcxproj"。
+     1>InitializeBuildStatus:
+         由於指定了 "AlwaysCreate"，因此正在建立 "Debug\testclhp.unsuccessfulbuild"。
+       ClCompile:
+         所有輸出都是最新的。
+       ResourceCompile:
+         所有輸出都是最新的。
+       Link:
+         所有輸出都是最新的。
+         testclhp.vcxproj -> D:\wxWidgets\AdCalculate\testclhp\Debug\testclhp.exe
+       FinalizeBuildStatus:
+         正在刪除檔案 "Debug\testclhp.unsuccessfulbuild"。
+         正在變更時間戳記 "Debug\testclhp.lastbuildstate"。
+     1>專案 "D:\wxWidgets\AdCalculate\testclhp\testclhp\testclhp.vcxproj" (build 目標) 建置完成。
+
+建置成功。
+
+經過時間 00:00:00.05

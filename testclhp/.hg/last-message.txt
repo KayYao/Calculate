@@ -1,0 +1,16 @@
+2014/005/26  Kay Yao Advance Calculate.
+
+    The Fixed Problem.
+        1.) The panel of calculate2 and calculate can match the frame.
+              The order can't be changed. If you changed the  order, the panel can't be match the frame.
+              	SetSizer(sizer1); //use the sizer for layout
+                sizer1->Fit(this); //fit the sizer to the content
+                sizer1->SetSizeHints(this); //set hintd to honor min size
+                
+       2.) Fixed the when the augend is zero, it can't calculate the addition.
+               if(this->m_nCurNum==0)
+               {
+		  this->m_nPrevNum=this->m_nPrevNum;
+                }
+       3.) Fixed the dec transform.
+                

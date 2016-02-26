@@ -1,0 +1,207 @@
+diff --git a/testclhp/calculate.cpp b/testclhp/calculate.cpp
+--- a/testclhp/calculate.cpp
++++ b/testclhp/calculate.cpp
+@@ -63,6 +63,6 @@
+ 	sizer4->Add(new wxButton(plControlPanel,ID_MINUS,   _T("-"),wxDefaultPosition, wxSize(45,45),0, wxDefaultValidator),0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 2);
+ 	sizer4->Add(new wxButton(plControlPanel,ID_PLUS,    _T("+"),wxDefaultPosition, wxSize(45,94),0, wxDefaultValidator),0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 2);
+ 	sizer4->Add(new wxButton(plControlPanel,ID_EQUAL,   _T("="),wxDefaultPosition, wxSize(45,94),0, wxDefaultValidator),0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 2);
+-    sizer3->Add(sizer4, 0, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 0);
++    sizer3->Add(sizer4,0, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 0);
+ 	
+ 	plControlPanel->SetSizer(sizer3);
+@@ -67,5 +67,3 @@
+ 	
+ 	plControlPanel->SetSizer(sizer3);
+-	sizer3->Fit(plControlPanel);
+-    sizer3->SetSizeHints(plControlPanel);
+     sizer1->Add(plControlPanel, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+@@ -71,6 +69,4 @@
+     sizer1->Add(plControlPanel, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+-	sizer1->Fit(this);
+-    sizer1->SetSizeHints(this);
+ 	
+ 	SetSizer(sizer1);
+ 
+@@ -132,7 +128,7 @@
+ 	stbox->Add(rdoBin,1,wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+ 	sizer5->Add(stbox,0, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+ 
+-	/*stbox2= new wxStaticBoxSizer(wxVERTICAL,this,_T("Choices"));
++	stbox2= new wxStaticBoxSizer(wxVERTICAL,this,_T("Choices"));
+ 	rdoQword=new wxRadioButton(this,ID_Qword,_T("Qword"));
+ 	//rdoQword->SetValue(true);
+ 	stbox2->Add(rdoQword,1,wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+@@ -143,7 +139,7 @@
+ 	rdoByte=new wxRadioButton(this,ID_Byte,_T("Byte"));
+ 	stbox2->Add(rdoByte,1,wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+ 	sizer5->Add(stbox2,0, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+-	*/
++	
+ 	gbs=new wxGridBagSizer(0,0);
+ 	gs=new wxGridSizer(0,4,0,0);
+ 	
+@@ -185,9 +181,5 @@
+ 	sizer6->Add(sizer5,0, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+ 	sizer6->Add(plControlPanel, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+     
+-	//sizer1->Add(plControlPanel, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+-	sizer1->Add(sizer6, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+-	sizer1->Fit(this);
+-    sizer1->SetSizeHints(this);
+-	
++	sizer1->Add(sizer6, 0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+ 	SetSizer(sizer1);
+@@ -193,3 +185,2 @@
+ 	SetSizer(sizer1);
+-	 
+ 	Centre();
+@@ -195,4 +186,5 @@
+ 	Centre();
++
+ 	if(this->m_nCurNum!=0)
+     {
+         display->SetValue(GetResultTxt(this->m_nCurNum));
+@@ -247,6 +239,7 @@
+ 
+ void OctTransform(int num){  transformresult.Printf(_T("%o%s"),num,transformresult);}
+ void HexTransform(int num){ transformresult.Printf(_T("%X%s"),num,transformresult);}
++void DecTransform(int num){transformresult.Printf(_T("%d%s"),num,transformresult);}
+ 
+ void Calculate::OnClearc(wxCommandEvent & event){display->Clear();SetOperator(none);}
+ void Calculate::OnDivid(wxCommandEvent & event){SetOperator(Divid);}
+@@ -272,5 +265,6 @@
+ 
+ void Calculate::OnrdoDecSelect(wxCommandEvent& event)
+ {
++	double num=0;
+     if(this->m_nCurNum!=0)
+     {
+@@ -275,6 +269,6 @@
+     if(this->m_nCurNum!=0)
+     {
+-        display->SetValue(GetResultTxt(this->m_nCurNum));
++        num=this->m_nCurNum;
+     }
+     else
+     {
+@@ -278,5 +272,5 @@
+     }
+     else
+     {
+-        display->SetValue(GetResultTxt(this->m_nPrevNum));
++        num=this->m_nPrevNum;
+     }
+@@ -282,4 +276,9 @@
+     }
++   // SwitchControlPad(true);
++
++	transformresult=_T("");
++    DecTransform(num);
++    display->SetValue(transformresult);
+     SwitchControlPad(true);
+ }
+ void Calculate::OnrdoHexSelect(wxCommandEvent& event)
+@@ -331,6 +330,7 @@
+ 
+ void OctTransform2(int num){transformresult.Printf(_T("%o%s"),num,transformresult);}
+ void HexTransform2(int num){transformresult.Printf(_T("%X%s"),num,transformresult);}
++void DecTransform2(int num){transformresult.Printf(_T("%d%s"),num,transformresult);}
+ //=============== NOTE  there are still some problem for the ¦ì¼Æ =======================
+ 	void BinTransform2(int num){
+     long double total=0;
+@@ -376,5 +376,6 @@
+ 
+ void Calculate2::OnrdoDecSelect(wxCommandEvent& event)
+ {
++    double num=0;
+     if(this->m_nCurNum!=0)
+     {
+@@ -379,6 +380,6 @@
+     if(this->m_nCurNum!=0)
+     {
+-        display->SetValue(GetResultTxt(this->m_nCurNum));
++        num=this->m_nCurNum;
+     }
+     else
+     {
+@@ -382,5 +383,5 @@
+     }
+     else
+     {
+-        display->SetValue(GetResultTxt(this->m_nPrevNum));
++        num=this->m_nPrevNum;
+     }
+@@ -386,5 +387,10 @@
+     }
+-    SwitchControlPad(false,dec);
++   // SwitchControlPad(true);
++
++	transformresult=_T("");
++    DecTransform2(num);
++    display->SetValue(transformresult);
++    SwitchControlPad(true,dec);
+ }
+ void Calculate2::OnrdoHexSelect(wxCommandEvent& event)
+ {
+diff --git a/testclhp/communicate.cpp b/testclhp/communicate.cpp
+--- a/testclhp/communicate.cpp
++++ b/testclhp/communicate.cpp
+@@ -2,4 +2,5 @@
+ 
+ Communicate::Communicate(const wxString& title): wxFrame(NULL, wxID_ANY, title, wxDefaultPosition,wxSize(250,425),wxDEFAULT_DIALOG_STYLE | wxRESIZE_BORDER)
+ {
++	
+ 	SetIcon(wxIcon(wxT("mondrian")));
+@@ -5,5 +6,5 @@
+ 	SetIcon(wxIcon(wxT("mondrian")));
+-
++	
+ 	//=== add the menu=======
+ 	menubar = new wxMenuBar;
+ 
+@@ -39,9 +40,9 @@
+     m_parent = new wxPanel(this, wxID_ANY);
+ 
+     m_call = new Calculate(m_parent);
+-    hbox->Add(m_call,1, wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 0);
++    hbox->Add(m_call,1, wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+ 
+     m_parent->SetSizer(hbox);
+     this->Center();
+ }
+ 
+@@ -43,10 +44,14 @@
+ 
+     m_parent->SetSizer(hbox);
+     this->Center();
+ }
+ 
++int Communicate::scount=0;
++int Communicate::ecount=1;
++
++
+ BEGIN_EVENT_TABLE(Communicate, wxFrame)
+ 	EVT_MENU(wxID_HELP,    Communicate::OnHelp)
+ 	EVT_MENU(wxID_ABOUT,   Communicate::OnAbout)
+ 	EVT_MENU(wxID_EXIT,    Communicate::OnExit)
+ 	EVT_MENU(ID_ENGINEER,  Communicate::OnEngineer)
+@@ -48,8 +53,9 @@
+ BEGIN_EVENT_TABLE(Communicate, wxFrame)
+ 	EVT_MENU(wxID_HELP,    Communicate::OnHelp)
+ 	EVT_MENU(wxID_ABOUT,   Communicate::OnAbout)
+ 	EVT_MENU(wxID_EXIT,    Communicate::OnExit)
+ 	EVT_MENU(ID_ENGINEER,  Communicate::OnEngineer)
++	EVT_MENU(ID_STANDER ,  Communicate::OnStander)
+ END_EVENT_TABLE()
+ 
+ void Communicate::OnHelp(wxCommandEvent & event){
+@@ -68,4 +74,8 @@
+ 
+ void Communicate::OnEngineer(wxCommandEvent & event){
+ 	Engineer();
++}
++
++void Communicate::OnStander(wxCommandEvent & event){
++	Stander();
+ }
+\ No newline at end of file
