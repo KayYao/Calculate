@@ -38,7 +38,7 @@ Calculate::Calculate(wxPanel * parent): wxPanel(parent, wxID_ANY, wxDefaultPosit
 	sizer3 = new wxBoxSizer(wxHORIZONTAL);
 	gbs=new wxGridBagSizer(0,0);
 	gs=new wxGridSizer(0,3,0,0);
-	
+	//omg
 	gs->Add(new wxButton(plControlPanel,ID_CLEARC, _T("C"),wxDefaultPosition, wxSize(45,45),0, wxDefaultValidator),1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 2);
 	gs->Add(new wxButton(plControlPanel,ID_DIVID,  _T("/"),wxDefaultPosition, wxSize(45,45),0, wxDefaultValidator),1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 2);
 	gs->Add(new wxButton(plControlPanel,ID_MULTI,  _T("*"),wxDefaultPosition, wxSize(45,45),0, wxDefaultValidator),1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 2);
@@ -121,15 +121,15 @@ Calculate2::Calculate2( wxPanel * parent)
 	plControlPanel = new wxPanel(this, ID_CONTROLPANEL, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
 
 	stbox= new wxStaticBoxSizer(wxVERTICAL,this,_T("Options"));
-	rdoHex=new wxRadioButton(this,ID_Hex,_T("16進位"));
+	rdoHex=new wxRadioButton(this,ID_Hex,_T("16繞i礎穫"));
 	
 	stbox->Add(rdoHex,1,wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
-	rdoDec=new wxRadioButton(this,ID_Dec,_T("10進位"));
+	rdoDec=new wxRadioButton(this,ID_Dec,_T("10繞i礎穫"));
 	rdoDec->SetValue(true);
 	stbox->Add(rdoDec,1,wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
-	rdoOct=new wxRadioButton(this,ID_Oct,_T("8進位"));
+	rdoOct=new wxRadioButton(this,ID_Oct,_T("8繞i礎穫"));
 	stbox->Add(rdoOct,1,wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
-	rdoBin=new wxRadioButton(this,ID_Bin,_T("2進位"));
+	rdoBin=new wxRadioButton(this,ID_Bin,_T("2繞i礎穫"));
 	stbox->Add(rdoBin,1,wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
 	sizer5->Add(stbox,0, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
 
@@ -330,7 +330,7 @@ void Calculate::OnrdoOctSelect(wxCommandEvent& event)
 void DecTransform2(int num){transformresult.Printf(_T("%d%s"),num,transformresult);}
 void OctTransform2(int num){transformresult.Printf(_T("%o%s"),num,transformresult);}
 void HexTransform2(int num){transformresult.Printf(_T("%X%s"),num,transformresult);}
-//=============== NOTE  there are still some problem for the 位數 =======================
+//=============== NOTE  there are still some problem for the 礎穫翹�� =======================
 	void BinTransform2(int num){
     long double total=0;
 	long double m=1;
